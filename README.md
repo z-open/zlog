@@ -4,7 +4,7 @@
 
 ### Scope
 
-This is logger for nodeJs inspired by log4j used in Java.
+This is a logger for nodeJs inspired by log4j used in Java.
 
 
 
@@ -12,19 +12,32 @@ This is logger for nodeJs inspired by log4j used in Java.
 
 There are 3 main entities working together:
 
-Appenders
+**Appenders**
 Define your appenders. Appenders will append the logged message in a chosen format.
 Appenders can be ConsoleAppender, FileAppender, customAppender.
 
-Loggers
+**Loggers**
 Define your logger with a name and a log level as well as which appenders they use.
 Use the logger in your code.
 
-logManager
+**logManager**
 The logManager helps you access and define your appenders and loggers.
 
-formatter
-Appenders will output the text following a format.
+**pattern**
+Appenders will output the text in a pattern.
+Ex: 12:13 myLogger INFO myText
+
+**format**
+Appenders will output the text following a format before including the text in the appender pattern.
+
+    logger.info('Hello %b','you');
+
+actually runs
+
+    zlog.formatText('Hello %b','you')
+    
+Result: Hello [you]
+
 
 ### Use case
 
@@ -58,7 +71,7 @@ if a logger does not have appenders, it will default to the console appender nam
 Using console.log, error, etc will output to the default logger named ROOT
 which use the STDOUT console appender.
 
-    zlogsetRootLogger('INFO');
+    zlog.setRootLogger('INFO');
 
 This would set the default root logger level.
 
