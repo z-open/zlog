@@ -1,0 +1,25 @@
+{
+  "name": "zlog",
+  "version": "1.0.0",
+  "description": "logger",
+  "main": "lib/zlog.js",
+  "keywords": [
+    "zlog"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/z-open/zlog.git"
+  },
+  "scripts": {
+    "test": "./node_modules/jasmine/bin/jasmine.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "jasmine": "^2.4.1",
+    "jsonwebtoken": "^5.0.0",
+    "lodash": "^4.15.0",
+    "moment": "^2.11.1",
+    "promise": "^7.1.1"
+    },
+  "devDependencies": {}
+}
