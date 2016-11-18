@@ -10,7 +10,7 @@ This is a logger for nodeJs inspired by log4j used in Java.
 
 ### Principle
 
-There are 3 main entities working together:
+There are 4 main entities working together:
 
 **Appenders**
 Define your appenders. Appenders will append the logged message in a chosen format.
