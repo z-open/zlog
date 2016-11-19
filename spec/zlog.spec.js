@@ -1,5 +1,5 @@
 var zlog = require('../lib/zlog');
-var stdout, appender;
+var stdout, appender,appender2;
 
 describe('zlog', function () {
 
@@ -12,13 +12,18 @@ describe('zlog', function () {
             }
         });
         spyOn(appender, 'writeLog').and.callThrough();
+         appender2 = zlog.setCustomAppender('APPENDER2', {
+            writeLog: function () {
+            }
+        });
+        spyOn(appender2, 'writeLog').and.callThrough();
 
     });
 
     it('should NOT show the log on default console appender', function () {
         var logger = zlog.getLogger('myLogger');
         logger.info('Hello');
-        expect(stdout.writeLog).not.toHaveBeenCalled();
+        expect(stdout.writeLog).toHaveBeenCalled();
     });
 
     it('should show the log on appender', function () {
@@ -69,6 +74,20 @@ describe('zlog', function () {
         expect(appender.writeLog).toHaveBeenCalled();
     });
 
+
+   it('should show the log from child logger in parent logger but not in child logger appender', function () {
+
+        var logger = zlog.getLogger('myLogger');
+        logger.addAppender('APPENDER');
+        logger.setLevel('ERROR');
+        var childLogger = zlog.getLogger('myLogger/myChild');
+        childLogger.setLevel('INFO');
+        childLogger.addAppender('APPENDER2');
+        childLogger.debug('Hello');
+        expect(appender.writeLog).toHaveBeenCalled();
+       // but the appender2 should not have called since it only cares about INFO not debug
+        expect(appender2.writeLog).not.toHaveBeenCalled();
+    });    
 
 
     it('should show the log from child logger on console if parent has no appender', function () {
