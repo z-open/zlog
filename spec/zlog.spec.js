@@ -19,7 +19,7 @@ describe('zlog', function () {
             writeLog: function () {
             }
         });
-        
+
         spyOn(appender2, 'writeLog').and.callThrough();
 
     });
@@ -38,6 +38,16 @@ describe('zlog', function () {
     });
 
 
+    it('should NOT show any log since all loggers are set to NONE', function () {
+        zlog.setRootLogger('NONE');
+        var logger = zlog.getLogger('myLogger');
+        logger.addAppender('APPENDER');
+        logger.setLevel('NONE');
+        logger.debug('Hello');
+        expect(stdout.writeLog).not.toHaveBeenCalled();
+        expect(appender.writeLog).not.toHaveBeenCalled();
+    });    
+    
     it('should show the log on appender', function () {
 
         var logger = zlog.getLogger('myLogger');
@@ -122,5 +132,7 @@ describe('zlog', function () {
 
         expect(stdout.writeLog).toHaveBeenCalled();
     });
+
+
 
 });

@@ -63,6 +63,16 @@ or
 set the log level
 
 
+**Log levels**
+
+ - all // logger would log anything
+ - debug
+ - info
+ - warn
+ - error
+ - fatal
+ - none
+
 ### Logging strategy
 
 **Default appender**
