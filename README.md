@@ -1,12 +1,10 @@
 # zlog
 
-
-
 ### Scope
 
 This is a logger for nodeJs inspired by log4j used in Java.
 
-zlog can define logger and child loggers.
+Zlog can define logger and child loggers. It can be enhanced with custom appenders.
 
 
 ### Principle
@@ -14,21 +12,26 @@ zlog can define logger and child loggers.
 There are 4 main entities working together:
 
 **Appenders**
+
 Define your appenders. Appenders will append the logged message in a chosen format.
 Appenders can be ConsoleAppender, FileAppender, customAppender.
 
 **Loggers**
+
 Define your logger with a name and a log level as well as which appenders they use.
 Use the logger in your code.
 
 **logManager**
+
 The logManager helps you access and define your appenders and loggers.
 
 **pattern**
+
 Appenders will output the text in a pattern.
 Ex: 12:13 myLogger INFO myText
 
 **format**
+
 Appenders will output the text following a format before including the text in the appender pattern.
 
     logger.info('Hello %b','you');
@@ -115,7 +118,7 @@ In the following example, myLogger would not write anything.
     var logger = zlog.getLogger('myLogger/childLogger');
     logger.info('Hello world');
 
-if the childLogger was NOT set with a level, it would write according to its ancestors logger levels.
+if the childLogger was NOT set with a level, it would write according to its parent level.
 
 
 Ex 3:
@@ -127,7 +130,7 @@ In the following example, myLogger would not write anything.
     var logger = zlog.getLogger('myLogger/childLogger');
     logger.info('Hello world');
 
-if the childLogger was not set with a level, it would write according to its ancestors logger levels.
+if the childLogger was not set with a level, it would write according to its parent logger level.
 In this example, myLogger would not write the text because the parent logger level is lower.
 
 
