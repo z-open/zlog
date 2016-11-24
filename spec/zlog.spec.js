@@ -4,7 +4,7 @@ var stdout, appender, appender2;
 describe('zlog', function () {
 
     beforeEach(function () {
-        zlog.clear();
+        zlog.reset(); // make sure no logger is still set to a level;
         stdout = zlog.getAppender('STDOUT');
         spyOn(stdout, 'writeLog');//.and.callThrough();
 
@@ -242,5 +242,8 @@ describe('zlog', function () {
     // - DEBUG
     // - NONE
     // - ALL
+    it('should print the logger status to the console', function () {
+        zlog.print();
+    });
 
 });
