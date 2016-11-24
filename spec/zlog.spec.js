@@ -159,6 +159,27 @@ describe('zlog', function () {
         expect(appender2.writeLog).not.toHaveBeenCalled();
     });
 
+    it('should show the log from gran child logger in parent logger appender', function () {
+
+        var parentLogger = zlog.getLogger('myLogger');
+        parentLogger.addAppender('APPENDER');
+        parentLogger.setLevel('ERROR');
+        var granChildLogger = zlog.getLogger('myLogger/myChild/granChild');
+        zlog.setLogger('myLogger/myChild', 'DEBUG');
+        granChildLogger.debug('Hello');
+        expect(appender.writeLog).toHaveBeenCalled();
+    });
+
+    it('should NOT show the log from gran child logger in parent logger appender', function () {
+
+        var parentLogger = zlog.getLogger('myLogger');
+        parentLogger.addAppender('APPENDER');
+        parentLogger.setLevel('ERROR');
+        var granChildLogger = zlog.getLogger('myLogger/myChild/granChild');
+        zlog.setLogger('myLogger/myChild', 'INFO');
+        granChildLogger.debug('Hello');
+        expect(appender.writeLog).not.toHaveBeenCalled();
+    });    
 
     it('should show the log from child logger on console if parent has no appender', function () {
 
