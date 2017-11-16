@@ -20,12 +20,14 @@ console.log('This should be wrapped via zlog');
 
 # Development
 
-Install Dependencies
+Install Dependencies:
 ```
 npm install
 ```
-
 Run tests:
+```
+npm test
+```
 
 
 # Principle
