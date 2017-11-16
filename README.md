@@ -8,11 +8,11 @@ Zlog can define logger and child loggers. It can be enhanced with custom appende
 
 Install the library:
 ```
-npm install zlog
+npm install zimit-zlog --save
 ```
 Setup the logger in your application:
 ```
-const zlog = require('zlog');
+const zlog = require('zimit-zlog');
 zlog.setRootLogger('ALL');
 
 console.log('This should be wrapped via zlog');
@@ -71,7 +71,7 @@ Result: Hello [you]
 A named logger shall be retrieved in the file containing the code to log.
 Though it might be pratical to configure the logger from this file, best is to define appenders and loggers in a dedicated file of your application for quick access and overall vision of what and how all is logged.
 
-    const zlog = require('zlog');
+    const zlog = require('zimit-zlog');
     var logger = zlog.getLogger('do.service');
     logger.info('Some info')'
     logger.debug('I am debugging')'
