@@ -1,5 +1,5 @@
 {
-  "name": "zlog",
+  "name": "zimit-zlog",
   "version": "1.0.2",
   "description": "logger",
   "main": "lib/zlog.js",
