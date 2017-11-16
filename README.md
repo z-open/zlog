@@ -1,13 +1,34 @@
 # zlog
 
-### Scope
-
-This is a logger for nodeJs inspired by log4j used in Java.
+This is a logger for Node.js inspired by log4j used in Java.
 
 Zlog can define logger and child loggers. It can be enhanced with custom appenders.
 
+# Quick Start
 
-### Principle
+Install the library:
+```
+npm install zlog
+```
+Setup the logger in your application:
+```
+const zlog = require('zlog');
+zlog.setRootLogger('ALL');
+
+console.log('This should be wrapped via zlog');
+```
+
+# Development
+
+Install Dependencies
+```
+npm install
+```
+
+Run tests:
+
+
+# Principle
 
 There are 4 main entities working together:
 
@@ -43,7 +64,7 @@ actually runs
 Result: Hello [you]
 
 
-### Basic scenario
+# Basic scenario
 
 A named logger shall be retrieved in the file containing the code to log.
 Though it might be pratical to configure the logger from this file, best is to define appenders and loggers in a dedicated file of your application for quick access and overall vision of what and how all is logged.
@@ -76,7 +97,7 @@ set the log level
  - fatal
  - none
 
-### Logging strategy
+# Logging strategy
 
 **Default appender**
 
@@ -132,5 +153,3 @@ In the following example, myLogger would not write anything.
 
 if the childLogger was not set with a level, it would write according to its parent logger level.
 In this example, myLogger would not write the text because the parent logger level is lower.
-
-
