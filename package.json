@@ -1,6 +1,6 @@
 {
-  "name": "zimit-zlog",
-  "version": "1.0.3",
+  "name": "zlog4js",
+  "version": "1.0.4",
   "description": "logger",
   "main": "lib/zlog.js",
   "keywords": [
