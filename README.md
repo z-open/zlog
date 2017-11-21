@@ -99,6 +99,49 @@ set the log level
  - fatal
  - none
 
+# Appenders
+
+Loggers push information, errors, warning, etc, to appenders which output the data to the console, to file or to a remote server according to their implementations.
+
+**STDOUT appender**
+
+By default, all loggers will user the STDOUT appender which outputs to console.
+
+
+**File Appender**
+
+A basic file appender is provided.
+
+ex:
+
+    setFileAppender('FILE_APPENDER', '/home/user/logs/log.txt');
+
+    zlog.setLogger('myLogger','ALL',['FILE_APPENDER']);
+    var logger = zlog.getLogger('myLogger');
+    logger.info('Hello world');
+
+In this example, any information sent to myLogger would be persisted by FILE_APPENDER in the provided file.
+
+
+**Custom appender**
+
+ex:
+
+    function MyAppender() {
+        this.writeLog = function(loggerName, logLevel, logText) {
+            sentLogToRemoveServerOfMyChoice(loggerName+' '+logLevel+' '+logText);
+        }
+    }
+
+    zlog.setRootLogger('ALL',['STDOUT','MYAPPENDER']);
+    var logger = zlog.getLogger('myLogger');
+    logger.info('Hello world');
+
+In addition to the console appender STDOUT, information would also be logged by MYAPPENDER, so the sentLogToRemoveServerOfMyChoice function would be called.
+
+
+
+
 # Logging strategy
 
 **Default appender**
@@ -155,3 +198,4 @@ In the following example, myLogger would not write anything.
 
 if the childLogger was not set with a level, it would write according to its parent logger level.
 In this example, myLogger would not write the text because the parent logger level is lower.
+
