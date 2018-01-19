@@ -30,6 +30,26 @@ describe('zlog', function () {
         expect(stdout.writeLog).toHaveBeenCalled();
     });
 
+    it('should handle an error object log', function () {
+        var logger = zlog.getLogger('myLogger');
+        logger.error(new Error());
+        expect(stdout.writeLog).toHaveBeenCalled();
+
+        // The full error with stack trace should be printed
+        var errorLog = String(stdout.writeLog.calls.argsFor(0)[2]);
+        expect(errorLog.indexOf('zlog.spec.js') > -1).toEqual(true);
+    });
+
+    it('should handle an object passed in', function () {
+        var logger = zlog.getLogger('myLogger');
+        logger.error({ my: 'object' });
+        expect(stdout.writeLog).toHaveBeenCalled();
+
+        // The full error with stack trace should be printed
+        var errorLog = String(stdout.writeLog.calls.argsFor(0)[2]);
+        expect(errorLog.split('- ')[1]).toEqual('{"my":"object"}');
+    });
+
     it('should show the log on default console appender when using console.log and level is info', function () {
         zlog.setRootLogger('INFO');
         console.log('hello');
